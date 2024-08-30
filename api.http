@@ -1,0 +1,34 @@
+### Recuperar todas las peliculas
+GET http://localhost:1234/movies
+
+### Recuperar una pelicula por id
+GET http://localhost:1234/movies/c4060603-66ee-11ef-a9ca-54b20390c007
+
+### Recuperar todas las peliculas por genero
+GET http://localhost:1234/movies?genre=Action
+
+### Crear una pelicula con POST
+POST http://localhost:1234/movies
+Content-Type: application/json
+
+{
+  "title": "Dragon Ball Z: La resurreción de Freezer",
+  "year": 2015,
+  "director": "Masahiro Hosoda",
+  "duration": 125,
+  "poster": "https://static.wikia.nocookie.net/doblaje/images/0/09/LatinAmerican_ResurrectionF_Poster.png/revision/latest?cb=20150319060957&path-prefix=es",
+  "genre": ["Sci-Fi", "Action", "Adventure"]
+}
+
+
+### Actualizar una pelicula
+
+PATCH http://localhost:1234/movies/6c9633aa-66ee-11ef-a9ca-54b20390c007
+Content-Type: application/json
+
+{
+  "rate": 7.5
+}
+
+### Eliminar una pelicula por id
+DELETE http://localhost:1234/movies/6c962927-66ee-11ef-a9ca-54b20390c007
