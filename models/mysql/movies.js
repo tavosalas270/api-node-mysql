@@ -1,10 +1,11 @@
 import mysql from 'mysql2/promise';
 
 const config = {
-    host: 'localhost',
-    user: 'root',
-    password: '12345',
-    database: 'moviesdb'
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || '12345',
+    port: process.env.DB_PORT || 3306,
+    database: process.env.DB_NAME || 'moviesdb'
 }
 
 const connection = await mysql.createConnection(config)
