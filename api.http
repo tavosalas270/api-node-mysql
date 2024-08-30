@@ -32,3 +32,6 @@ Content-Type: application/json
 
 ### Eliminar una pelicula por id
 DELETE http://localhost:1234/movies/6c962927-66ee-11ef-a9ca-54b20390c007
+
+
+# mysql://root:pRcgVPLWyHjBbzRPACLvCMJEClXtWOEf@autorack.proxy.rlwy.net:10300/railway
