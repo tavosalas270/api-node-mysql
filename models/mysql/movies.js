@@ -61,6 +61,7 @@ export class MovieModel {
             if (genres.length === 0) {
                 return null
             } else {
+                console.log("Holis estoy comenzando")
                 const [uuidResult] = await connection.query("SELECT UUID() uuid;")
                 const [{uuid}] = uuidResult
                 console.log("Holis ", uuid)
