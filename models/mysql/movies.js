@@ -66,7 +66,7 @@ export class MovieModel {
                 try {
                     await connection.query(
                         `INSERT INTO movie (id, title, year, director, duration, poster, rate) 
-                        VALUES (UUID_TO_BIN("${uuid}"), ?, ?, ?, ?, ?, ?)`, 
+                        VALUES (UUID_TO_BIN('${uuid}'), ?, ?, ?, ?, ?, ?)`, 
                         [title, year, director, duration, poster, rate]
                     )
                 } catch (error) {

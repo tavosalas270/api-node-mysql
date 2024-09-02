@@ -14,7 +14,7 @@ export const createApp = ({movieModel}) => {
     // Asi utilizo todas mis rutas de API
     app.use('/movies', createMovieRouter({ movieModel }))
 
-    app.listen(PORT, "0.0.0.0", () => {
+    app.listen(PORT, () => {
         console.log("Escuchando en el puerto", PORT)
     })
 }

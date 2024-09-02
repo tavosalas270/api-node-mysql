@@ -8,7 +8,7 @@ GET http://localhost:1234/movies/c4060603-66ee-11ef-a9ca-54b20390c007
 GET http://localhost:1234/movies?genre=Action
 
 ### Crear una pelicula con POST
-POST http://api-node-mysql-production-de7d.up.railway.app/movies/create
+POST http://localhost:1234/movies/create
 Content-Type: application/json
 
 {
