@@ -70,7 +70,7 @@ export class MovieModel {
                         [title, year, director, duration, poster, rate]
                     )
                 } catch (error) {
-                    console.log(error);
+                    return error;
                 }
     
                 try {
@@ -81,7 +81,7 @@ export class MovieModel {
                         [title, lowerCaseGenre]
                     )
                 } catch (error) {
-                    console.log(error);
+                    return error;
                 }
         
                 const [movies] = await connection.query(
