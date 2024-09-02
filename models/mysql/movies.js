@@ -8,8 +8,6 @@ const config = {
     database: process.env.DB_NAME || 'moviesdb'
 }
 
-console.log(config)
-
 const connection = await mysql.createConnection(config)
 
 export class MovieModel {
@@ -57,15 +55,15 @@ export class MovieModel {
 
     static async create ({input}) {
         const { genre, title, year, duration, director, rate, poster } = input
-
+        console.log(input)
         const lowerCaseGenre = genre.map((g) => g.toLowerCase());
         const [genres] = await connection.query("SELECT id, name FROM genre WHERE LOWER(name) IN (?);", [lowerCaseGenre])
-
         if (genres.length === 0) {
             return null
         } else {
             const [uuidResult] = await connection.query("SELECT UUID() uuid;")
             const [{uuid}] = uuidResult
+            console.log("Holis ", uuid)
             try {
                 await connection.query(
                     `INSERT INTO movie (id, title, year, director, duration, poster, rate) 
@@ -91,7 +89,8 @@ export class MovieModel {
                 `SELECT BIN_TO_UUID(id) id, title, year, director, duration, poster, rate 
                 FROM movie WHERE id = UUID_TO_BIN(?);`, [uuid]
             )
-    
+
+            console.log(movies)
             return movies[0]
         }
     }
