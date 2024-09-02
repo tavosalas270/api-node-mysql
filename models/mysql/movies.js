@@ -54,41 +54,45 @@ export class MovieModel {
     }
 
     static async create ({input}) {
-        const { genre, title, year, duration, director, rate, poster } = input
-        const lowerCaseGenre = genre.map((g) => g.toLowerCase());
-        const [genres] = await connection.query("SELECT id, name FROM genre WHERE LOWER(name) IN (?);", [lowerCaseGenre])
-        if (genres.length === 0) {
-            return null
-        } else {
-            const [uuidResult] = await connection.query("SELECT UUID() uuid;")
-            const [{uuid}] = uuidResult
-            try {
-                await connection.query(
-                    `INSERT INTO movie (id, title, year, director, duration, poster, rate) 
-                    VALUES (UUID_TO_BIN("${uuid}"), ?, ?, ?, ?, ?, ?)`, 
-                    [title, year, director, duration, poster, rate]
-                )
-            } catch (error) {
-                console.log(error);
-            }
-
-            try {
-                await connection.query(
-                    `INSERT INTO movie_genres (movie_id, genre_id)
-                    SELECT (SELECT id FROM movie WHERE title = ?), g.id
-                    FROM genre g WHERE g.name IN (?);`, 
-                    [title, lowerCaseGenre]
-                )
-            } catch (error) {
-                console.log(error);
-            }
+        try {
+            const { genre, title, year, duration, director, rate, poster } = input
+            const lowerCaseGenre = genre.map((g) => g.toLowerCase());
+            const [genres] = await connection.query("SELECT id, name FROM genre WHERE LOWER(name) IN (?);", [lowerCaseGenre])
+            if (genres.length === 0) {
+                return null
+            } else {
+                const [uuidResult] = await connection.query("SELECT UUID() uuid;")
+                const [{uuid}] = uuidResult
+                try {
+                    await connection.query(
+                        `INSERT INTO movie (id, title, year, director, duration, poster, rate) 
+                        VALUES (UUID_TO_BIN("${uuid}"), ?, ?, ?, ?, ?, ?)`, 
+                        [title, year, director, duration, poster, rate]
+                    )
+                } catch (error) {
+                    console.log(error);
+                }
     
-            const [movies] = await connection.query(
-                `SELECT BIN_TO_UUID(id) id, title, year, director, duration, poster, rate 
-                FROM movie WHERE id = UUID_TO_BIN(?);`, [uuid]
-            )
-
-            return movies[0]
+                try {
+                    await connection.query(
+                        `INSERT INTO movie_genres (movie_id, genre_id)
+                        SELECT (SELECT id FROM movie WHERE title = ?), g.id
+                        FROM genre g WHERE g.name IN (?);`, 
+                        [title, lowerCaseGenre]
+                    )
+                } catch (error) {
+                    console.log(error);
+                }
+        
+                const [movies] = await connection.query(
+                    `SELECT BIN_TO_UUID(id) id, title, year, director, duration, poster, rate 
+                    FROM movie WHERE id = UUID_TO_BIN(?);`, [uuid]
+                )
+    
+                return movies[0]
+            }
+        } catch (err) {
+            return err
         }
     }
 

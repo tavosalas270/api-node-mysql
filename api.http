@@ -8,7 +8,7 @@ GET http://localhost:1234/movies/c4060603-66ee-11ef-a9ca-54b20390c007
 GET http://localhost:1234/movies?genre=Action
 
 ### Crear una pelicula con POST
-POST http://localhost:1234/movies/create
+POST http://api-node-mysql-production-de7d.up.railway.app/movies/create
 Content-Type: application/json
 
 {
@@ -23,7 +23,7 @@ Content-Type: application/json
 
 ### Actualizar una pelicula
 
-PATCH http://localhost:1234/movies/6c9633aa-66ee-11ef-a9ca-54b20390c007
+PATCH http://api-node-mysql-production-de7d.up.railway.app/movies/update/e24f345c-6945-11ef-87c7-a2aa990475b6
 Content-Type: application/json
 
 {
@@ -31,7 +31,4 @@ Content-Type: application/json
 }
 
 ### Eliminar una pelicula por id
-DELETE http://localhost:1234/movies/6c962927-66ee-11ef-a9ca-54b20390c007
-
-
-# mysql://root:pRcgVPLWyHjBbzRPACLvCMJEClXtWOEf@autorack.proxy.rlwy.net:10300/railway
+DELETE http://api-node-mysql-production-de7d.up.railway.app/movies/6c962927-66ee-11ef-a9ca-54b20390c007
