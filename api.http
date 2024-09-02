@@ -8,16 +8,16 @@ GET http://localhost:1234/movies/c4060603-66ee-11ef-a9ca-54b20390c007
 GET http://localhost:1234/movies?genre=Action
 
 ### Crear una pelicula con POST
-POST http://localhost:1234/movies
+POST http://localhost:1234/movies/create
 Content-Type: application/json
 
 {
-  "title": "Dragon Ball Z: La batalla del demonio magico",
-  "year": 2015,
-  "director": "Masahiro Hosoda",
+  "title": "Naruto, Proteger la aldea de cascadas",
+  "year": 2000,
+  "director": "Masashi Kishimoto",
   "duration": 125,
   "poster": "https://static.wikia.nocookie.net/doblaje/images/0/09/LatinAmerican_ResurrectionF_Poster.png/revision/latest?cb=20150319060957&path-prefix=es",
-  "genre": ["Sci-Fi", "Action", "Adventure"]
+  "genre": ["Action", "Adventure"]
 }
 
 
