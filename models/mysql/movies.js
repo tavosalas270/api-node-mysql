@@ -63,11 +63,12 @@ export class MovieModel {
             } else {
                 const [uuidResult] = await connection.query("SELECT UUID() uuid;")
                 const [{uuid}] = uuidResult
+                console.log("Holis ", uuid)
                 try {
                     await connection.query(
                         `INSERT INTO movie (id, title, year, director, duration, poster, rate) 
-                        VALUES (UUID_TO_BIN('${uuid}'), ?, ?, ?, ?, ?, ?)`, 
-                        [title, year, director, duration, poster, rate]
+                        VALUES (UUID_TO_BIN(?), ?, ?, ?, ?, ?, ?)`, 
+                        [uuid, title, year, director, duration, poster, rate]
                     )
                 } catch (error) {
                     return error;
