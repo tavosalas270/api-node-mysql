@@ -8,8 +8,6 @@ const config = {
     database: process.env.DB_NAME || 'moviesdb'
 }
 
-console.log(config)
-
 const connection = await mysql.createConnection(config)
 
 export class MovieModel {
